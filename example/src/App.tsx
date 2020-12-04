@@ -1,25 +1,18 @@
 import * as React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import HorizontalDatepicker from 'react-native-horizontal-datepicker';
 
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
-
-  React.useEffect(() => {
-    HorizontalDatepicker.multiply(3, 7).then(setResult);
-  }, []);
-
   return (
     <View style={styles.container}>
-      <Text>Result: {result}</Text>
+      <HorizontalDatepicker onSelectedDateChange={(date) => console.log(date)} mode='gregorian' startDate={new Date('2020-08-20')} endDate={new Date('2020-08-30')} />
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+
   },
 });
