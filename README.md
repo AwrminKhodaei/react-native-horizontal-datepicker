@@ -11,11 +11,18 @@ npm install react-native-horizontal-datepicker
 ## Usage
 
 ```js
-import HorizontalDatepicker from "react-native-horizontal-datepicker";
+import HorizontalDatepicker from 'react-native-horizontal-datepicker';
 
 // ...
 
-const result = await HorizontalDatepicker.multiply(3, 7);
+<HorizontalDatepicker
+  onSelectedDateChange={(date) => console.log(date)}
+  mode="gregorian"
+  startDate={new Date('2020-08-20')}
+  endDate={new Date('2020-08-31')}
+  selectedItemTextStyle={{ fontFamily: 'iranyekanmobileFN-medium' }}
+  initialSelectedDate={new Date('2020-08-30')}
+/>;
 ```
 
 ## Contributing
