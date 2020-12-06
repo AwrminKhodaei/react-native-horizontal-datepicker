@@ -6,6 +6,7 @@ horizontal datepicker for react-native
 
 ```sh
 npm install react-native-horizontal-datepicker
+yarn add react-native-horizontal-datepicker
 ```
 
 ## Usage
@@ -16,12 +17,20 @@ import HorizontalDatepicker from 'react-native-horizontal-datepicker';
 // ...
 
 <HorizontalDatepicker
-  onSelectedDateChange={(date) => console.log(date)}
   mode="gregorian"
   startDate={new Date('2020-08-20')}
   endDate={new Date('2020-08-31')}
-  selectedItemTextStyle={{ fontFamily: 'iranyekanmobileFN-medium' }}
-  initialSelectedDate={new Date('2020-08-30')}
+  initialSelectedDate={new Date('2020-08-22')}
+  onSelectedDateChange={(date) => setSelectedDate(date)}
+  selectedItemWidth={170}
+  unselectedItemWidth={38}
+  itemHeight={38}
+  itemRadius={10}
+  selectedItemTextStyle={styles.selectedItemTextStyle}
+  unselectedItemTextStyle={styles.selectedItemTextStyle}
+  selectedItemBackgroundColor="#222831"
+  unselectedItemBackgroundColor="#ececec"
+  flatListContainerStyle={styles.flatListContainerStyle}
 />;
 ```
 

@@ -13,12 +13,15 @@ export default function App() {
         endDate={new Date('2020-08-31')}
         initialSelectedDate={new Date('2020-08-22')}
         onSelectedDateChange={(date) => setSelectedDate(date)}
+        selectedItemWidth={170}
+        unselectedItemWidth={38}
+        itemHeight={38}
+        itemRadius={10}
         selectedItemTextStyle={styles.selectedItemTextStyle}
         unselectedItemTextStyle={styles.selectedItemTextStyle}
-        flatListContainerStyle={{
-          display: 'flex',
-          alignSelf: 'center',
-        }}
+        selectedItemBackgroundColor="#222831"
+        unselectedItemBackgroundColor="#ececec"
+        flatListContainerStyle={styles.flatListContainerStyle}
       />
       <Text>{moment(selectedDate).locale('fa').format('jYYYY-jMM-jDD')}</Text>
     </SafeAreaView>
@@ -35,5 +38,9 @@ const styles = StyleSheet.create({
       Platform.OS === 'android'
         ? 'iranyekanmobile-medium'
         : 'iranyekanmobileFN-medium',
+  },
+  flatListContainerStyle: {
+    display: 'flex',
+    alignSelf: 'center',
   },
 });
