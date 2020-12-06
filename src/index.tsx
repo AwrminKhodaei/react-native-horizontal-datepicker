@@ -6,15 +6,15 @@ import {
   TouchableOpacity,
   ViewStyle,
 } from 'react-native';
-import moment from 'moment-jalaali';
+import moment, { Moment } from 'moment-jalaali';
 import SelectedDate from './components/Selected';
 import UnSelectedDate from './components/UnSelected';
 import { enumerateDaysBetweenDates } from './utils/helper';
 
 interface Props {
   mode: 'gregorian' | 'jalali';
-  startDate: Date;
-  endDate: Date;
+  startDate: Date | Moment;
+  endDate: Date | Moment;
   onSelectedDateChange: (date: Date) => void;
   initialSelectedDate?: Date;
   selectedItemWidth?: number;
@@ -27,8 +27,7 @@ interface Props {
   unselectedItemBackgroundColor?: string;
   flatListContainerStyle?: ViewStyle;
 }
-
-const HorizontalDatepicker = ({
+const HorizontalDatepicker: React.FC<Props> = ({
   mode,
   startDate,
   endDate,
@@ -43,7 +42,7 @@ const HorizontalDatepicker = ({
   selectedItemBackgroundColor,
   unselectedItemBackgroundColor,
   flatListContainerStyle,
-}: Props) => {
+}) => {
   const [selectedDate, setSelectedDate] = useState<string>(
     moment(initialSelectedDate).format('YYYY-MM-DD')
   );
@@ -109,13 +108,13 @@ const HorizontalDatepicker = ({
         keyExtractor={(date, index) => `${date + index}`}
         contentContainerStyle={[styles.flatListStyle, flatListContainerStyle]}
         // invert flatlist when mode is jalali
-        initialScrollIndex={mode === 'jalali' ? results.length - 1 : 0}
+        initialScrollIndex={0}
         inverted={mode === 'jalali'}
         ref={listRef}
         renderItem={renderItem}
         getItemLayout={(_, index) => ({
           length: itemHeight,
-          offset: unselectedItemWidth * index + 1 + 20,
+          offset: unselectedItemWidth * (index + 1) + 40,
           index,
         })}
       />
@@ -129,4 +128,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
+
 export default HorizontalDatepicker;

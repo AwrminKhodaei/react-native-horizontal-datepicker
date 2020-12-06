@@ -10,8 +10,8 @@ export default function App() {
       <HorizontalDatepicker
         mode="gregorian"
         startDate={new Date('2020-08-20')}
-        endDate={new Date('2020-10-31')}
-        initialSelectedDate={new Date('2020-08-20')}
+        endDate={new Date('2020-08-31')}
+        initialSelectedDate={new Date('2020-08-22')}
         onSelectedDateChange={(date) => setSelectedDate(date)}
         selectedItemTextStyle={styles.selectedItemTextStyle}
         unselectedItemTextStyle={styles.selectedItemTextStyle}

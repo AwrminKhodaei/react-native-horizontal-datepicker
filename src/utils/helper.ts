@@ -1,6 +1,9 @@
-import moment from 'moment-jalaali';
+import moment, { Moment } from 'moment-jalaali';
 
-export const enumerateDaysBetweenDates = (startDate: Date, endDate: Date) => {
+export const enumerateDaysBetweenDates = (
+  startDate: Date | Moment,
+  endDate: Date | Moment
+) => {
   const dateArray = [];
   let currentDate = moment(startDate);
   while (currentDate.isBefore(endDate)) {
