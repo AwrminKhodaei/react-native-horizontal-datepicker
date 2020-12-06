@@ -5,14 +5,15 @@ horizontal datepicker for react-native
 ## Installation
 
 ```sh
-npm install react-native-horizontal-datepicker
-yarn add react-native-horizontal-datepicker
+npm install @awrminkhodaei/react-native-horizontal-datepicker
+or
+yarn add @awrminkhodaei/react-native-horizontal-datepicker
 ```
 
 ## Usage
 
 ```js
-import HorizontalDatepicker from 'react-native-horizontal-datepicker';
+import HorizontalDatepicker from '@awrminkhodaei/react-native-horizontal-datepicker';
 
 // ...
 
