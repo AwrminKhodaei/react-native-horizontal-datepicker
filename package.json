@@ -105,6 +105,9 @@
       }
     }
   },
+    "publishConfig": {
+      "access": "public"
+    },
   "eslintConfig": {
     "extends": [
       "@react-native-community",
