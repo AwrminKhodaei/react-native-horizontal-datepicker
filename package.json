@@ -1,6 +1,6 @@
 {
   "name": "@awrminkhodaei/react-native-horizontal-datepicker",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "horizontal datepicker for react-native",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
