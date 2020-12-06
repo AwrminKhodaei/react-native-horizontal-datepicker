@@ -6,6 +6,7 @@ interface SelectedDateProps {
   selectedItemTextStyle?: TextStyle;
   selectedItemBackgroundColor?: string;
   itemRadius?: number;
+  itemHeight?: number;
 }
 const SelectedDate: React.FC<SelectedDateProps> = ({
   text,
@@ -13,6 +14,7 @@ const SelectedDate: React.FC<SelectedDateProps> = ({
   selectedItemTextStyle = styles.selectedDateText,
   selectedItemBackgroundColor = '#16213e',
   itemRadius,
+  itemHeight,
 }) => {
   return (
     <View
@@ -22,6 +24,7 @@ const SelectedDate: React.FC<SelectedDateProps> = ({
           width: selectedItemWidth,
           backgroundColor: selectedItemBackgroundColor,
           borderRadius: itemRadius,
+          height: itemHeight,
         },
       ]}
     >
@@ -35,7 +38,7 @@ const SelectedDate: React.FC<SelectedDateProps> = ({
 const styles = StyleSheet.create({
   selectedDateContainer: {
     width: 170,
-    height: 38,
+
     backgroundColor: '#16213e',
     display: 'flex',
     justifyContent: 'center',

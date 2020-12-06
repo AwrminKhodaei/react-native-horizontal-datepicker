@@ -1,18 +1,26 @@
 import * as React from 'react';
-import { SafeAreaView, StyleSheet } from 'react-native';
+import { Platform, SafeAreaView, StyleSheet, Text } from 'react-native';
+import moment from 'moment-jalaali';
 import HorizontalDatepicker from 'react-native-horizontal-datepicker';
 
 export default function App() {
+  const [selectedDate, setSelectedDate] = React.useState<Date>();
   return (
     <SafeAreaView style={styles.container}>
       <HorizontalDatepicker
-        onSelectedDateChange={(date) => console.log(date)}
         mode="gregorian"
         startDate={new Date('2020-08-20')}
-        endDate={new Date('2020-08-31')}
-        selectedItemTextStyle={{ fontFamily: 'iranyekanmobileFN-medium' }}
-        initialSelectedDate={new Date('2020-08-30')}
+        endDate={new Date('2020-10-31')}
+        initialSelectedDate={new Date('2020-08-20')}
+        onSelectedDateChange={(date) => setSelectedDate(date)}
+        selectedItemTextStyle={styles.selectedItemTextStyle}
+        unselectedItemTextStyle={styles.selectedItemTextStyle}
+        flatListContainerStyle={{
+          display: 'flex',
+          alignSelf: 'center',
+        }}
       />
+      <Text>{moment(selectedDate).locale('fa').format('jYYYY-jMM-jDD')}</Text>
     </SafeAreaView>
   );
 }
@@ -20,7 +28,12 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
+  },
+  selectedItemTextStyle: {
+    fontFamily:
+      Platform.OS === 'android'
+        ? 'iranyekanmobile-medium'
+        : 'iranyekanmobileFN-medium',
   },
 });

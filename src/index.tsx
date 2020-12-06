@@ -1,15 +1,15 @@
-import React, { createRef } from 'react';
+import React, { createRef, useState } from 'react';
 import {
   TextStyle,
   FlatList,
   StyleSheet,
   TouchableOpacity,
+  ViewStyle,
 } from 'react-native';
 import moment from 'moment-jalaali';
-import { enumerateDaysBetweenDates } from './utils/helper';
-import { useState } from 'react';
 import SelectedDate from './components/Selected';
 import UnSelectedDate from './components/UnSelected';
+import { enumerateDaysBetweenDates } from './utils/helper';
 
 interface Props {
   mode: 'gregorian' | 'jalali';
@@ -21,95 +21,105 @@ interface Props {
   unselectedItemWidth?: number;
   itemHeight?: number;
   itemRadius?: number;
-  flatListPadding?: {
-    top?: number;
-    bottom?: number;
-    left?: number;
-    right?: number;
-  };
   selectedItemTextStyle?: TextStyle;
   unselectedItemTextStyle?: TextStyle;
   selectedItemBackgroundColor?: string;
   unselectedItemBackgroundColor?: string;
+  flatListContainerStyle?: ViewStyle;
 }
 
 const HorizontalDatepicker = ({
   mode,
   startDate,
   endDate,
-  selectedItemTextStyle,
-  selectedItemWidth = 170,
-  selectedItemBackgroundColor,
-  unselectedItemWidth = 38,
-  unselectedItemTextStyle,
-  unselectedItemBackgroundColor,
-  itemRadius = 10,
+  onSelectedDateChange,
   initialSelectedDate,
+  selectedItemWidth = 170,
+  unselectedItemWidth = 38,
+  itemHeight = 38,
+  itemRadius = 10,
+  selectedItemTextStyle,
+  unselectedItemTextStyle,
+  selectedItemBackgroundColor,
+  unselectedItemBackgroundColor,
+  flatListContainerStyle,
 }: Props) => {
   const [selectedDate, setSelectedDate] = useState<string>(
     moment(initialSelectedDate).format('YYYY-MM-DD')
   );
+  // Ref used to handle scroll to specific index
   const listRef = createRef<FlatList<any>>();
+  // use modern month names in jalali mode
   if (mode === 'jalali') {
     moment.loadPersian({
       dialect: 'persian-modern',
     });
   }
+  // format to show date in jalali mode
   const jFormat = 'dddd، jD jMMMM';
+  // format to show date in gregorian mode
   const grFormat = 'dddd, MMM D';
-
+  // get dates between startDate and endDate
   const results = enumerateDaysBetweenDates(startDate, endDate);
-
-  return (
-    <FlatList
-      horizontal
-      showsHorizontalScrollIndicator={false}
-      data={results}
-      scrollEventThrottle={16}
-      keyExtractor={(date, index) => `${date + index}`}
-      contentContainerStyle={[styles.flatListStyle]}
-      initialScrollIndex={mode === 'jalali' ? results.length - 1 : 0}
-      inverted={mode === 'jalali'}
-      getItemLayout={(_, index) => ({
-        length: index * unselectedItemWidth,
-        offset: unselectedItemWidth,
-        index,
-      })}
-      ref={listRef}
-      renderItem={({ item, index }) => (
-        <TouchableOpacity
-          onPress={() => {
-            setSelectedDate(item);
-            listRef.current?.scrollToOffset({
-              animated: true,
-              offset: index * 38,
-            });
-          }}
-        >
-          {selectedDate === item ? (
-            <SelectedDate
-              text={moment(item)
-                .locale(mode === 'jalali' ? 'fa' : 'en')
-                .format(mode === 'jalali' ? jFormat : grFormat)}
-              selectedItemWidth={selectedItemWidth}
-              selectedItemTextStyle={selectedItemTextStyle}
-              selectedItemBackgroundColor={selectedItemBackgroundColor}
-              itemRadius={itemRadius}
-            />
-          ) : (
-            <UnSelectedDate
-              text={moment(item)
-                .locale(mode === 'jalali' ? 'fa' : 'en')
-                .format(mode === 'jalali' ? 'jD' : 'DD')}
-              unselectedItemBackgroundColor={unselectedItemBackgroundColor}
-              unselectedItemTextStyle={unselectedItemTextStyle}
-              unselectedItemWidth={unselectedItemWidth}
-              itemRadius={itemRadius}
-            />
-          )}
-        </TouchableOpacity>
+  // handle press on date item, set selectedDate and call onSelectedDateChange with Date constractor
+  const onDateItemPress = (item: string, index: number) => {
+    setSelectedDate(item);
+    onSelectedDateChange(new Date(item));
+    listRef.current?.scrollToIndex({
+      animated: true,
+      index: index,
+      viewPosition: 0.5,
+    });
+  };
+  // render Date items here
+  const renderItem = ({ item, index }: { item: string; index: number }) => (
+    <TouchableOpacity onPress={() => onDateItemPress(item, index)}>
+      {selectedDate === item ? (
+        <SelectedDate
+          text={moment(item)
+            .locale(mode === 'jalali' ? 'fa' : 'en')
+            .format(mode === 'jalali' ? jFormat : grFormat)}
+          selectedItemWidth={selectedItemWidth}
+          selectedItemTextStyle={selectedItemTextStyle}
+          selectedItemBackgroundColor={selectedItemBackgroundColor}
+          itemRadius={itemRadius}
+          itemHeight={itemHeight}
+        />
+      ) : (
+        <UnSelectedDate
+          text={moment(item)
+            .locale(mode === 'jalali' ? 'fa' : 'en')
+            .format(mode === 'jalali' ? 'jD' : 'DD')}
+          unselectedItemBackgroundColor={unselectedItemBackgroundColor}
+          unselectedItemTextStyle={unselectedItemTextStyle}
+          unselectedItemWidth={unselectedItemWidth}
+          itemRadius={itemRadius}
+          itemHeight={itemHeight}
+        />
       )}
-    ></FlatList>
+    </TouchableOpacity>
+  );
+  return (
+    <>
+      <FlatList
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        data={results}
+        scrollEventThrottle={16}
+        keyExtractor={(date, index) => `${date + index}`}
+        contentContainerStyle={[styles.flatListStyle, flatListContainerStyle]}
+        // invert flatlist when mode is jalali
+        initialScrollIndex={mode === 'jalali' ? results.length - 1 : 0}
+        inverted={mode === 'jalali'}
+        ref={listRef}
+        renderItem={renderItem}
+        getItemLayout={(_, index) => ({
+          length: itemHeight,
+          offset: unselectedItemWidth * index + 1 + 20,
+          index,
+        })}
+      />
+    </>
   );
 };
 const styles = StyleSheet.create({
@@ -117,9 +127,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#f5f5f5',
     height: 58,
     alignItems: 'center',
-  },
-  jalaliDirection: {
-    // flexDirection: 'row-reverse',
   },
 });
 export default HorizontalDatepicker;
