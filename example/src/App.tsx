@@ -1,18 +1,19 @@
 import * as React from 'react';
 import { Platform, SafeAreaView, StyleSheet, Text } from 'react-native';
 import moment from 'moment-jalaali';
-import HorizontalDatepicker from 'react-native-horizontal-datepicker';
+import HorizontalDatepicker from '@awrminkhodaei/react-native-horizontal-datepicker';
 
 export default function App() {
-  const [selectedDate, setSelectedDate] = React.useState<Date>();
+  const [jalaliDate, setJalaliDate] = React.useState<Date>();
+  const [gregorianDate, setGregorianDate] = React.useState<Date>();
   return (
     <SafeAreaView style={styles.container}>
       <HorizontalDatepicker
-        mode="gregorian"
+        mode="jalali"
         startDate={new Date('2020-08-20')}
         endDate={new Date('2020-08-31')}
-        initialSelectedDate={new Date('2020-08-22')}
-        onSelectedDateChange={(date) => setSelectedDate(date)}
+        initialSelectedDate={new Date('2020-08-20')}
+        onSelectedDateChange={(date) => setJalaliDate(date)}
         selectedItemWidth={170}
         unselectedItemWidth={38}
         itemHeight={38}
@@ -23,7 +24,22 @@ export default function App() {
         unselectedItemBackgroundColor="#ececec"
         flatListContainerStyle={styles.flatListContainerStyle}
       />
-      <Text>{moment(selectedDate).locale('fa').format('jYYYY-jMM-jDD')}</Text>
+      <Text>{moment(jalaliDate).locale('fa').format('jYYYY-jMM-jDD')}</Text>
+      <HorizontalDatepicker
+        mode="gregorian"
+        startDate={new Date('2020-08-20')}
+        endDate={new Date('2020-08-31')}
+        initialSelectedDate={new Date('2020-08-20')}
+        onSelectedDateChange={(date) => setGregorianDate(date)}
+        selectedItemWidth={170}
+        unselectedItemWidth={38}
+        itemHeight={38}
+        itemRadius={10}
+        selectedItemBackgroundColor="#222831"
+        unselectedItemBackgroundColor="#ececec"
+        flatListContainerStyle={styles.flatListContainerStyle}
+      />
+      <Text>{moment(gregorianDate).locale('en').format('YYYY-MM-DD')}</Text>
     </SafeAreaView>
   );
 }
