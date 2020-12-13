@@ -9,7 +9,7 @@ Jalali and gregorian react native horizontal datepicker 🔥
  <p align="center" >
 <p align="center" >
    <a href="https://www.npmjs.com/package/@awrminkhodaei/react-native-horizontal-datepicker">
-    <img alt="@awrminkhodaei/react-native-horizontal-datepicker" src="https://i.ibb.co/4dhYwBm/photo5938425253686522698.jpg" width="260" height="auto" />
+![](https://i.ibb.co/82VzJwQ/demo.gif)
  </a>
 </p>
 
