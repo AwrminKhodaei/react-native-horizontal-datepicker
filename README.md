@@ -6,13 +6,7 @@ Jalali and gregorian react native horizontal datepicker 🔥
 <img src="https://i.ibb.co/7Yh2GSP/package.png" alt="@awrminkhodaei/react-native-horizontal-datepicker" style="max-width: 100%;"/>
 </p>
 
- <p align="center" >
-<p align="center" >
-   <a href="https://www.npmjs.com/package/@awrminkhodaei/react-native-horizontal-datepicker">
- <img alt="@awrminkhodaei/react-native-horizontal-datepicker" src="https://i.ibb.co/4dhYwBm/photo5938425253686522698.jpg" width="260" height="510" /> </a>
-  ![app demo](/example/demo.gif)
-
-</p>
+![React native horizontal date picker - Animated gif demo](example/demo.gif)
 
 ## Installation
 
