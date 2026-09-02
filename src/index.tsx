@@ -97,10 +97,10 @@ const HorizontalDatepicker: React.FC<HorizontalDatepickerProps> = ({
 
   const listRef = useRef<FlatList<string>>(null);
 
-  const days = useMemo(() => enumerateDaysBetweenDates(startDate, endDate), [
-    startDate,
-    endDate,
-  ]);
+  const days = useMemo(
+    () => enumerateDaysBetweenDates(startDate, endDate),
+    [startDate, endDate]
+  );
 
   const selectedIndex = selectedDate ? days.indexOf(selectedDate) : -1;
 

@@ -62,8 +62,9 @@ describe('HorizontalDatepicker', () => {
       initialSelectedDate: '2020-08-22',
       unselectedItemTextStyle: { color: 'tomato' },
     });
+    // Days before the selection are outside the initial render window.
     const style = StyleSheet.flatten(
-      textOf(dayCell(tree, '2020-08-21')).props.style
+      textOf(dayCell(tree, '2020-08-23')).props.style
     );
     expect(style.color).toBe('tomato');
   });
@@ -76,9 +77,7 @@ describe('HorizontalDatepicker', () => {
     });
     const date: Date = onSelectedDateChange.mock.calls[0][0];
     expect([date.getFullYear(), date.getMonth(), date.getDate()]).toEqual([
-      2020,
-      7,
-      22,
+      2020, 7, 22,
     ]);
     expect(date.getHours()).toBe(0);
   });
