@@ -1,0 +1,37 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/assets/fonts/iranyekanmobile-black.ttf",
+      "sha1": "29269975b706c2904a8416807d92646968886f9f"
+    },
+    {
+      "path": "src/assets/fonts/iranyekanmobile-bold.ttf",
+      "sha1": "e61861090e90d7bf35a09065305b225bb2a53d11"
+    },
+    {
+      "path": "src/assets/fonts/iranyekanmobile-extra-black.ttf",
+      "sha1": "5928322ad18c38aae08df8dd9217b325b7332f8b"
+    },
+    {
+      "path": "src/assets/fonts/iranyekanmobile-extra-bold.ttf",
+      "sha1": "92eb8d69e573557d3a4088f93f0d082f6a4af704"
+    },
+    {
+      "path": "src/assets/fonts/iranyekanmobile-light.ttf",
+      "sha1": "acd47eb4f6e4ce38c2e601958cccadc33870bf11"
+    },
+    {
+      "path": "src/assets/fonts/iranyekanmobile-medium.ttf",
+      "sha1": "18cb9e62a8c92b2d18b43131d7f7bf572ee329d0"
+    },
+    {
+      "path": "src/assets/fonts/iranyekanmobile-thin.ttf",
+      "sha1": "ed576d7af47c40147bb96d6aa05b0d98bc46cd03"
+    },
+    {
+      "path": "src/assets/fonts/iranyekanmobile.ttf",
+      "sha1": "807987de637449ca48cff845d218f993d94f0a74"
+    }
+  ]
+}
