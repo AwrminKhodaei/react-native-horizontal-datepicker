@@ -6,19 +6,33 @@
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
-    "start": "react-native start"
+    "start": "react-native start",
+    "pods": "bundle install && bundle exec pod install --project-directory=ios"
   },
   "dependencies": {
-    "@awrminkhodaei/react-native-horizontal-datepicker": "^0.1.6",
-    "@types/moment-jalaali": "^0.7.4",
+    "@awrminkhodaei/react-native-horizontal-datepicker": "link:..",
     "moment-jalaali": "^0.9.2",
-    "react": "16.11.0",
-    "react-native": "0.62.2"
+    "react": "19.2.3",
+    "react-native": "0.87.1",
+    "react-native-safe-area-context": "^5.5.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.9.6",
-    "@babel/runtime": "^7.9.6",
-    "babel-plugin-module-resolver": "^4.0.0",
-    "metro-react-native-babel-preset": "^0.59.0"
+    "@babel/core": "^7.25.2",
+    "@babel/preset-env": "^7.25.3",
+    "@babel/runtime": "^7.25.0",
+    "@react-native-community/cli": "20.2.0",
+    "@react-native-community/cli-platform-android": "20.2.0",
+    "@react-native-community/cli-platform-ios": "20.2.0",
+    "@react-native/babel-preset": "0.87.1",
+    "@react-native/metro-config": "0.87.1",
+    "@react-native/typescript-config": "0.87.1",
+    "@types/moment-jalaali": "^0.7.4",
+    "@types/react": "^19.2.0",
+    "babel-plugin-module-resolver": "^5.0.2",
+    "escape-string-regexp": "^4.0.0",
+    "typescript": "^5.6.2"
+  },
+  "engines": {
+    "node": ">= 22.11.0"
   }
 }

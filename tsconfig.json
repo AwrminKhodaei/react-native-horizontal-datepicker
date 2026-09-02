@@ -2,26 +2,36 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "react-native-horizontal-datepicker": ["./src/index"]
+      "@awrminkhodaei/react-native-horizontal-datepicker": [
+        "./src/index"
+      ]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
     "esModuleInterop": true,
-    "importsNotUsedAsValues": "error",
     "forceConsistentCasingInFileNames": true,
     "jsx": "react",
-    "lib": ["esnext"],
+    "lib": [
+      "esnext"
+    ],
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
-    "noImplicitUseStrict": false,
-    "noStrictGenericChecks": false,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
-    "target": "esnext"
-  }
+    "target": "esnext",
+    "verbatimModuleSyntax": false
+  },
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "lib",
+    "example",
+    "node_modules"
+  ]
 }

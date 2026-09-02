@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, TextStyle, View } from 'react-native';
+
 interface UnSelectedDateProps {
   text: string;
   unselectedItemWidth?: number;
@@ -7,45 +8,42 @@ interface UnSelectedDateProps {
   unselectedItemBackgroundColor?: string;
   itemRadius?: number;
   itemHeight?: number;
+  itemSpacing?: number;
 }
 
 const UnSelectedDate: React.FC<UnSelectedDateProps> = ({
   text,
   unselectedItemWidth = 38,
-  unselectedItemTextStyle = styles.selectedDateText,
+  unselectedItemTextStyle,
   unselectedItemBackgroundColor = '#fff',
   itemRadius,
   itemHeight,
+  itemSpacing = 10,
 }) => {
   return (
     <View
       style={[
-        styles.selectedDateContainer,
+        styles.container,
         {
           width: unselectedItemWidth,
           backgroundColor: unselectedItemBackgroundColor,
           borderRadius: itemRadius,
           height: itemHeight,
+          marginHorizontal: itemSpacing,
         },
       ]}
     >
-      <Text style={[styles.selectedDateText, unselectedItemTextStyle]}>
-        {text}
-      </Text>
+      <Text style={[styles.text, unselectedItemTextStyle]}>{text}</Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  selectedDateContainer: {
-    width: 38,
-    backgroundColor: '#fff',
-    display: 'flex',
+  container: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginHorizontal: 10,
   },
-  selectedDateText: {
+  text: {
     fontSize: 16,
     color: '#16213e',
   },
