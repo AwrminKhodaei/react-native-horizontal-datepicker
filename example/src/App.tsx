@@ -10,9 +10,9 @@ export default function App() {
     <SafeAreaView style={styles.container}>
       <HorizontalDatepicker
         mode="jalali"
-        startDate={new Date('2020-08-20')}
-        endDate={new Date('2020-08-31')}
-        initialSelectedDate={new Date('2020-08-20')}
+        startDate="2020-08-20"
+        endDate="2020-08-31"
+        initialSelectedDate="2020-08-20"
         onSelectedDateChange={(date) => setJalaliDate(date)}
         selectedItemWidth={170}
         unselectedItemWidth={38}
@@ -27,9 +27,9 @@ export default function App() {
       <Text>{moment(jalaliDate).locale('fa').format('jYYYY-jMM-jDD')}</Text>
       <HorizontalDatepicker
         mode="gregorian"
-        startDate={new Date('2020-08-20')}
-        endDate={new Date('2020-08-31')}
-        initialSelectedDate={new Date('2020-08-20')}
+        startDate="2020-08-20"
+        endDate="2020-08-31"
+        initialSelectedDate="2020-08-20"
         onSelectedDateChange={(date) => setGregorianDate(date)}
         selectedItemWidth={170}
         unselectedItemWidth={38}
@@ -56,7 +56,6 @@ const styles = StyleSheet.create({
         : 'iranyekanmobileFN-medium',
   },
   flatListContainerStyle: {
-    display: 'flex',
     alignSelf: 'center',
   },
 });
